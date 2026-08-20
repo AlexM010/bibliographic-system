@@ -1,0 +1,28 @@
+Markatos, E. P., & Antonatos, S. (2021). Zero-day network intrusion detection via payload signature generation. In Proceedings of the IEEE Symposium on Security and Privacy (pp. 45–59). IEEE. https://doi.org/10.1109/SP.2021.00012
+
+Argyros, A. A., & Lourakis, M. I. (2020). Real-time 3D tracking of articulated human hands. ACM Transactions on Graphics, 39(4), 101–115. https://doi.org/10.1145/3386569
+
+Bilas, A., & Magoutis, K. (2019). Scalable key-value storage for NVMe devices. IEEE Transactions on Parallel and Distributed Systems, 30(8), 1820–1834. https://doi.org/10.1109/TPDS.2019.2901234
+
+Plexousakis, D., & Christophides, V. (2018). Declarative query languages for RDF graphs. Journal of Web Semantics, 50, 12–28. https://doi.org/10.1016/j.websem.2018.02.001
+
+Tzitzikas, Y. (2022). Facets and dynamic taxonomies in information retrieval systems [Doctoral dissertation, University of Crete]. CSD UOC Repository.
+
+Papadakis, C. (2023). Optimizing eBPF programs for high-speed packet filtering [Master's thesis, University of Crete]. E-Locus Repository.
+
+Stephanidis, C., & Grammenos, D. (2020). Universal access in ambient intelligence environments. ACM Transactions on Computer-Human Interaction, 27(2), 1–25. https://doi.org/10.1145/3375123
+
+Department of Computer Science. (2021). Performance evaluation of distributed consensus protocols (Report No. TR-CSD-2021-04). University of Crete.
+
+Traganitis, A., & Tsiftsis, T. A. (2019). Performance of wireless sensor networks under jamming. IEEE Transactions on Wireless Communications, 18(5), 2500–2512. https://doi.org/10.1109/TWC.2019.2905678
+
+Kirousis, L., & Pagourtzis, A. (2022). Graph coloring algorithms for sparse networks. Theoretical Computer Science, 890, 100–114. https://doi.org/10.1016/j.tcs.2022.01.005
+
+
+
+
+
+Dean, J., & Ghemawat, S. (2004). MapReduce: Simplified data processing on large clusters. In Proceedings of the 6th Symposium on Operating Systems Design & Implementation (OSDI '04) (pp. 137–150). USENIX Association.
+
+
+Zabulis, X., Meghini, C., Dubois, A., Doulgeraki, P., Partarakis, N., Adami, I., Karuzaki, E., Carre, A.-L., Patsiouras, N., Kaplanidi, D., Metilli, D., Bartalesi, V., Ringas, C., Tasiopoulou, E., & Stefanidi, Z. (2022). Digitisation of Traditional Craft Processes. Journal on Computing and Cultural Heritage, 15(3), 1–24. https://doi.org/10.1145/3494675

@@ -1,0 +1,109 @@
+FLOW:
+APA citation
+     ↓
+ApaParser
+     ↓
+Local Publication
+     ↓
+Υπάρχει DOI;
+   /       \
+ YES       NO
+  │         │
+Crossref   Optional Crossref
+by DOI     title search
+  │         │
+  ▼         ▼
+Metadata / candidates
+       │
+       ▼
+PublicationMatcher
+       │
+   ┌───┴────┐
+   │        │
+matches   conflict
+   │        │
+   ▼        ▼
+ enrich    user warning/
+           user choice
+       │
+       ▼
+Publication
+       │
+ ┌─────┼───────────┐
+ ▼     ▼           ▼
+ORCID VIAF      Getty AAT
+authors authors    themes
+       │
+       ▼
+User extra metadata
+       │
+       ▼
+JSON / Firestore
+       │
+       ▼
+Collection
+
+
+
+FILES:
+
+bibliographic-system-python/
+│
+├── app.py
+│
+├── models/
+│   ├── publication.py
+│   ├── author.py
+│   ├── annotation.py
+│   ├── collection.py
+│   └── candidates.py
+│
+├── parsers/
+│   └── apa_parser.py
+│
+├── services/
+│   ├── publication_service.py
+│   ├── crossref_service.py
+│   ├── orcid_service.py
+│   ├── viaf_service.py
+│   ├── getty_service.py
+│   └── enrichment_service.py
+│
+├── mappers/
+│   └── crossref_mapper.py
+│
+├── validators/
+│   └── publication_matcher.py
+│
+├── serializers/
+│   └── json_serializer.py
+│
+├── repositories/
+│   ├── json_repository.py
+│   ├── firestore_publication_repository.py
+│   └── firestore_collection_repository.py
+│
+├── auth/
+│   └── google_auth.py
+│
+└── ui/
+    └── ... Streamlit pages
+
+
+
+    bibliographic-collections
+
+       eur3
+    project-638308172788
+
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDg2j8SVCwm_CyEThDl1GnI_Nh_K0zv34s",
+  authDomain: "bibliographic-collections.firebaseapp.com",
+  projectId: "bibliographic-collections",
+  storageBucket: "bibliographic-collections.firebasestorage.app",
+  messagingSenderId: "638308172788",
+  appId: "1:638308172788:web:90d55b6f38f41175b72fa1",
+  measurementId: "G-EQ7TYQ85CE"
+};
