@@ -1,8 +1,6 @@
 APP_STYLE = """
 
-/* ============================================
-   GLOBAL
-   ============================================ */
+/* Global */
 
 QWidget {
     font-family: "Segoe UI", "Inter", Arial;
@@ -25,9 +23,7 @@ QWidget#pageContent {
 }
 
 
-/* ============================================
-   SIDEBAR
-   ============================================ */
+/* Sidebar */
 
 QWidget#sidebar {
     background-color: #151821;
@@ -35,9 +31,7 @@ QWidget#sidebar {
 }
 
 
-/* ============================================
-   LABELS
-   ============================================ */
+/* Labels */
 
 QLabel {
     background-color: transparent;
@@ -70,9 +64,7 @@ QLabel#muted {
 }
 
 
-/* ============================================
-   PUBLICATION CARD
-   ============================================ */
+/* Publication Card */
 
 QFrame#publicationCard {
     background-color: #151821;
@@ -95,9 +87,7 @@ QLabel#publicationCardTitle {
 }
 
 
-/* ============================================
-   BUTTONS
-   ============================================ */
+/* Buttons */
 
 QPushButton {
     min-height: 38px;
@@ -135,9 +125,7 @@ QPushButton:disabled {
 }
 
 
-/* ============================================
-   PRIMARY BUTTON
-   ============================================ */
+/* Primary Button */
 
 QPushButton#primaryButton {
     background-color: #635bff;
@@ -160,9 +148,7 @@ QPushButton#primaryButton:pressed {
 }
 
 
-/* ============================================
-   DELETE / DANGER
-   ============================================ */
+/* Delete / Danger */
 
 QPushButton#dangerButton {
     background-color: transparent;
@@ -185,9 +171,7 @@ QPushButton#dangerButton:pressed {
 }
 
 
-/* ============================================
-   SIDEBAR NAVIGATION
-   ============================================ */
+/* Sidebar Navigation */
 
 QPushButton#navButton {
     min-height: 44px;
@@ -220,9 +204,7 @@ QPushButton#navButton:checked {
 }
 
 
-/* ============================================
-   INPUTS
-   ============================================ */
+/* Inputs */
 
 QLineEdit,
 QTextEdit,
@@ -254,9 +236,7 @@ QComboBox:focus {
 }
 
 
-/* ============================================
-   GROUP BOXES
-   ============================================ */
+/* Group Boxes */
 
 QGroupBox {
     background-color: #151821;
@@ -293,9 +273,7 @@ QGroupBox::title {
 }
 
 
-/* ============================================
-   CHECKBOXES
-   ============================================ */
+/* Checkboxes */
 
 QCheckBox {
     min-height: 38px;
@@ -335,9 +313,7 @@ QCheckBox::indicator {
 }
 
 
-/* ============================================
-   LISTS
-   ============================================ */
+/* Lists */
 
 QListWidget {
     background-color: #12151c;
@@ -374,9 +350,7 @@ QListWidget::item:selected {
 }
 
 
-/* ============================================
-   SCROLL AREA
-   ============================================ */
+/* Scroll Area */
 
 QScrollArea {
     background-color: #0f1117;
@@ -389,9 +363,7 @@ QScrollArea > QWidget > QWidget {
 }
 
 
-/* ============================================
-   SCROLLBAR
-   ============================================ */
+/* Scrollbar */
 
 QScrollBar:vertical {
     background-color: #11141b;
@@ -424,9 +396,7 @@ QScrollBar::sub-page:vertical {
 }
 
 
-/* ============================================
-   LOGIN
-   ============================================ */
+/* Login */
 
 QLabel#loginTitle {
     color: #ffffff;
@@ -498,9 +468,7 @@ QPushButton#logoutButton:hover {
     color: #ff7474;
 }
 
-/* ============================================
-   COPYRIGHT
-   ============================================ */
+/* Copyright */
 
 QLabel#copyrightLabel {
     background-color: transparent;
@@ -513,9 +481,7 @@ QLabel#copyrightLabel {
 }
 
 
-/* ============================================
-   TOOLTIP
-   ============================================ */
+/* Tooltip */
 
 QToolTip {
     background-color: #222631;
