@@ -142,7 +142,7 @@ class EditPublicationDialog(QDialog):
             if orcid:
                 open_orcid_button = QPushButton('Open ORCID')
                 open_orcid_button.clicked.connect(lambda checked=False, value=orcid: QDesktopServices.openUrl(QUrl(f'https://orcid.org/{value}')))
-            buttons.addWidget(open_orcid_button)
+                buttons.addWidget(open_orcid_button)
             orcid_button = QPushButton('Change ORCID' if orcid else 'Add ORCID')
             viaf_button = QPushButton('Change VIAF' if viaf else 'Add VIAF')
             if viaf:
