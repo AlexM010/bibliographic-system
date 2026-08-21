@@ -21,6 +21,12 @@ class Publication:
     pages: Optional[str] = None
     doi: Optional[str] = None
 
+    # Optional reference to the full paper.
+    # Example:
+    # {"type": "local", "location": "/path/paper.pdf"}
+    # {"type": "url", "location": "https://drive.google.com/..."}
+    full_text: Optional[dict] = None
+
     id: str = field(
         default_factory=lambda: str(uuid4())
     )
@@ -75,6 +81,7 @@ class Publication:
             "issue": self.issue,
             "pages": self.pages,
             "doi": self.doi,
+            "full_text": self.full_text,
 
             "metadata_sources":
                 self.metadata_sources,

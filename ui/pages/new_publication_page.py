@@ -64,6 +64,10 @@ from ui.dialogs.candidate_dialog import (
     CandidateDialog,
 )
 
+from ui.widgets.full_text_widget import (
+    FullTextWidget,
+)
+
 
 class NewPublicationPage(QWidget):
 
@@ -305,6 +309,47 @@ class NewPublicationPage(QWidget):
 
         layout.addWidget(
             authors_group
+        )
+
+        # =====================
+        # FULL PAPER
+        # =====================
+
+        full_text_group = QGroupBox(
+            "Full Paper"
+        )
+
+        full_text_layout = QVBoxLayout(
+            full_text_group
+        )
+
+        full_text_description = QLabel(
+            "Optionally reference the complete paper "
+            "from this computer or from an online location."
+        )
+
+        full_text_description.setObjectName(
+            "muted"
+        )
+
+        full_text_description.setWordWrap(
+            True
+        )
+
+        full_text_layout.addWidget(
+            full_text_description
+        )
+
+        self.full_text_widget = (
+            FullTextWidget()
+        )
+
+        full_text_layout.addWidget(
+            self.full_text_widget
+        )
+
+        layout.addWidget(
+            full_text_group
         )
 
         # =====================
@@ -943,6 +988,10 @@ class NewPublicationPage(QWidget):
             or None
         )
 
+        self.publication.full_text = (
+            self.full_text_widget.value()
+        )
+
         self.publication.user_metadata[
             "notes"
         ] = (
@@ -1012,6 +1061,8 @@ class NewPublicationPage(QWidget):
         self.issue_input.clear()
         self.pages_input.clear()
         self.doi_input.clear()
+
+        self.full_text_widget.clear()
 
         self.authors_list.clear()
         self.annotations_list.clear()

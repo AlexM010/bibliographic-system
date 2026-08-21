@@ -46,6 +46,10 @@ from ui.dialogs.candidate_dialog import (
     CandidateDialog,
 )
 
+from ui.widgets.full_text_widget import (
+    FullTextWidget,
+)
+
 
 class EditPublicationDialog(QDialog):
 
@@ -246,6 +250,49 @@ class EditPublicationDialog(QDialog):
 
         self.content_layout.addWidget(
             metadata_group
+        )
+
+        # =========================
+        # FULL PAPER
+        # =========================
+
+        full_text_group = QGroupBox(
+            "Full Paper"
+        )
+
+        full_text_layout = QVBoxLayout(
+            full_text_group
+        )
+
+        full_text_description = QLabel(
+            "Reference the complete paper from a local PDF "
+            "or from an online location."
+        )
+
+        full_text_description.setObjectName(
+            "muted"
+        )
+
+        full_text_description.setWordWrap(
+            True
+        )
+
+        full_text_layout.addWidget(
+            full_text_description
+        )
+
+        self.full_text_widget = FullTextWidget(
+            full_text=self.publication.get(
+                "full_text"
+            )
+        )
+
+        full_text_layout.addWidget(
+            self.full_text_widget
+        )
+
+        self.content_layout.addWidget(
+            full_text_group
         )
 
         # =========================
@@ -1163,6 +1210,12 @@ class EditPublicationDialog(QDialog):
             .text()
             .strip()
             or None
+        )
+
+        self.publication[
+            "full_text"
+        ] = (
+            self.full_text_widget.value()
         )
 
         metadata = (

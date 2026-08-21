@@ -1,7 +1,13 @@
 import html
+import os
 
 from PySide6.QtCore import (
     Qt,
+    QUrl,
+)
+
+from PySide6.QtGui import (
+    QDesktopServices,
 )
 
 from PySide6.QtWidgets import (
@@ -259,6 +265,166 @@ class ViewPublicationDialog(
         layout.addWidget(
             bibliographic_group
         )
+
+        # ====================================================
+        # FULL PAPER
+        # ====================================================
+
+        full_text = (
+            self.publication.get(
+                "full_text"
+            )
+            or {}
+        )
+
+        if isinstance(full_text, dict):
+
+            full_text_type = (
+                full_text.get("type")
+                or ""
+            )
+
+            location = (
+                full_text.get("location")
+                or ""
+            )
+
+            location = str(location).strip()
+
+            if location:
+
+                full_text_group = QGroupBox(
+                    "Full Paper"
+                )
+
+                full_text_layout = QVBoxLayout(
+                    full_text_group
+                )
+
+                if full_text_type == "local":
+
+                    filename = (
+                        os.path.basename(location)
+                        or location
+                    )
+
+                    file_label = QLabel(
+                        "<b>Local file:</b> "
+                        + html.escape(filename)
+                    )
+
+                    file_label.setWordWrap(True)
+
+                    full_text_layout.addWidget(
+                        file_label
+                    )
+
+                    path_label = QLabel(
+                        html.escape(location)
+                    )
+
+                    path_label.setObjectName(
+                        "muted"
+                    )
+
+                    path_label.setWordWrap(True)
+
+                    path_label.setTextInteractionFlags(
+                        Qt.TextSelectableByMouse
+                    )
+
+                    full_text_layout.addWidget(
+                        path_label
+                    )
+
+                    if os.path.exists(location):
+
+                        open_button = QPushButton(
+                            "Open Paper"
+                        )
+
+                        open_button.setObjectName(
+                            "primaryButton"
+                        )
+
+                        open_button.clicked.connect(
+                            lambda checked=False, path=location:
+                            QDesktopServices.openUrl(
+                                QUrl.fromLocalFile(path)
+                            )
+                        )
+
+                        full_text_layout.addWidget(
+                            open_button
+                        )
+
+                    else:
+
+                        unavailable_label = QLabel(
+                            "This local file is not available "
+                            "on this computer."
+                        )
+
+                        unavailable_label.setObjectName(
+                            "muted"
+                        )
+
+                        unavailable_label.setWordWrap(True)
+
+                        full_text_layout.addWidget(
+                            unavailable_label
+                        )
+
+                elif full_text_type == "url":
+
+                    safe_location = html.escape(
+                        location,
+                        quote=True,
+                    )
+
+                    link_label = QLabel(
+                        "<b>Online location:</b><br>"
+                        f'<a href="{safe_location}">'
+                        f"{html.escape(location)}"
+                        "</a>"
+                    )
+
+                    link_label.setWordWrap(True)
+
+                    link_label.setOpenExternalLinks(
+                        True
+                    )
+
+                    link_label.setTextInteractionFlags(
+                        Qt.TextBrowserInteraction
+                    )
+
+                    full_text_layout.addWidget(
+                        link_label
+                    )
+
+                    open_button = QPushButton(
+                        "Open Paper"
+                    )
+
+                    open_button.setObjectName(
+                        "primaryButton"
+                    )
+
+                    open_button.clicked.connect(
+                        lambda checked=False, url=location:
+                        QDesktopServices.openUrl(
+                            QUrl(url)
+                        )
+                    )
+
+                    full_text_layout.addWidget(
+                        open_button
+                    )
+
+                layout.addWidget(
+                    full_text_group
+                )
 
         # ====================================================
         # AUTHORS
