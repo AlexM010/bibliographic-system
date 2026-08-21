@@ -1,100 +1,75 @@
+<div align="center">
 
+# Bibliographic Collections
 
+**A desktop application for organizing, enriching, and managing academic publications.**
 
-Bibliographic Collections
-A desktop application for organizing, enriching, and managing academic publications.
+Bachelor's thesis project built with Python, PySide6 and Firebase.
 
-This project was developed as part of a bachelor's thesis. Its main goal is to provide a simple interface where users can add publications, review their bibliographic metadata, enrich author and subject information using external authority services, and keep a personal bibliographic library.
+</div>
 
-Features
-Add a publication from an APA-style citation
+---
 
-Extract bibliographic metadata from the citation
+## About
 
-Retrieve and improve publication metadata using Crossref
+Bibliographic Collections is a desktop application developed as part of a bachelor's thesis.
 
-Enrich author information with:
+The application helps users keep a personal library of academic publications, extract bibliographic metadata from citations, enrich author information through external authority services, add controlled-vocabulary annotations, and store personal notes and tags.
 
-ORCID
+The system keeps the user involved in the process: metadata returned by external services can be reviewed before it is saved.
 
-VIAF
+## Features
 
-Add thematic annotations using Getty AAT
+- Parse APA-style citations into structured publication metadata.
+- Retrieve publication metadata from **Crossref**.
+- Enrich authors with **ORCID** and **VIAF** identifiers.
+- Add thematic annotations using **Getty AAT**.
+- Add personal notes and tags.
+- Link the full paper using either a local PDF path or an online URL.
+- View, edit, search and delete saved publications.
+- Sign in with a Google account.
+- Store publications securely through Firebase Cloud Functions and Firestore.
 
-Store personal notes and tags for each publication
+## Technologies
 
-Link the full paper either:
+| Area | Technology |
+|---|---|
+| Language | Python |
+| Desktop UI | PySide6 |
+| Authentication | Google OAuth, Firebase Authentication |
+| Backend | Firebase Cloud Functions |
+| Database | Cloud Firestore |
+| Publication metadata | Crossref |
+| Author identifiers | ORCID, VIAF |
+| Controlled vocabulary | Getty AAT |
 
-from a local PDF file
+## Application Workflow
 
-through an online URL such as Google Drive, OneDrive, or a publisher page
+```mermaid
+flowchart TD
+    A[APA Citation] --> B[APA Parser]
+    B --> C[Publication]
+    C --> D[Crossref Metadata]
+    C --> E[ORCID Enrichment]
+    C --> F[VIAF Enrichment]
+    C --> G[Getty AAT Annotations]
+    D --> H[User Review]
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Storage Client]
+    I --> J[Firebase Cloud Function]
+    J --> K[Cloud Firestore]
+```
 
-View, edit, and delete saved publications
+The desktop client does not access Firestore directly. Storage requests are sent to Firebase Cloud Functions together with the authenticated user's Firebase ID token.
 
-Search through the local publication library
+## Project Structure
 
-Sign in with Google
+<details>
+<summary><strong>Show project structure</strong></summary>
 
-Store user publications through Firebase Cloud Functions and Firestore
-
-Technologies
-The desktop client is written in Python using PySide6 for the graphical interface.
-
-Main technologies and services used in the project:
-
-Python
-
-PySide6
-
-Firebase Authentication
-
-Firebase Cloud Functions
-
-Cloud Firestore
-
-Google OAuth
-
-Crossref API
-
-ORCID API
-
-VIAF
-
-Getty Art & Architecture Thesaurus (AAT)
-
-Application Workflow
-The main publication workflow is:
-
-APA citation
-     |
-     v
-APA Parser
-     |
-     v
-Publication object
-     |
-     +----> Crossref metadata
-     |
-     +----> ORCID author enrichment
-     |
-     +----> VIAF author enrichment
-     |
-     +----> Getty AAT annotations
-     |
-     v
-User review / editing
-     |
-     v
-Storage Client
-     |
-     v
-Firebase Cloud Function
-     |
-     v
-Cloud Firestore
-The desktop client does not access Firestore directly. Publication requests are sent to Firebase Cloud Functions together with the user's Firebase authentication token.
-
-Project Structure
+```text
 .
 ├── app.py
 ├── main_gui.py
@@ -166,114 +141,127 @@ Project Structure
         ├── full_text_widget.py
         ├── publication_card.py
         └── user_profile.py
-Main Components
-main_gui.py
-Main entry point for the desktop application. It starts the PySide6 application, displays the login window, and opens the main interface after authentication.
+```
 
-auth/
-Handles Google sign-in and Firebase Authentication.
+</details>
 
-models/
-Contains the main data structures used by the application, including publications, authors, annotations, and API search candidates.
+## Main Components
 
-parsers/
-Contains the APA citation parser used to extract initial publication metadata from user input.
+**`main_gui.py`**  
+Starts the PySide6 application and manages the transition between the login window and the main application window.
 
-services/
-Contains the application logic for communicating with external services such as Crossref, ORCID, VIAF, and Getty AAT.
+**`auth/`**  
+Handles Google OAuth and Firebase Authentication.
 
-mappers/
-Converts external API responses into the application's internal data models.
+**`models/`**  
+Contains the application's main data models: publications, authors, annotations and search candidates.
 
-cloud/
-Contains the client used to communicate with the Firebase backend.
+**`parsers/`**  
+Contains the APA citation parser used to create the initial structured publication data.
 
-functions/
-Contains the Firebase Cloud Functions used for authenticated publication storage and retrieval.
+**`services/`**  
+Contains the logic for Crossref, ORCID, VIAF, Getty AAT and publication enrichment.
 
-ui/
-Contains the PySide6 interface, including the login window, main window, publication pages, dialogs, reusable widgets, and application theme.
+**`mappers/`**  
+Converts external API responses into the application's internal models.
 
-Installation
-1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
-2. Create a virtual environment
+**`cloud/`**  
+Contains the desktop client's communication layer with the Firebase backend.
+
+**`functions/`**  
+Contains the Firebase Cloud Functions responsible for authenticated publication storage.
+
+**`ui/`**  
+Contains the PySide6 windows, pages, dialogs, reusable widgets and application theme.
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/bibliographic-system.git
+cd bibliographic-system
+```
+
+### 2. Create a virtual environment
+
 Linux / macOS:
 
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
+```
+
 Windows:
 
+```powershell
 py -m venv .venv
-.\.venv\Scripts\activate
-3. Install the required packages
+.\.venv\Scripts\Activate.ps1
+```
+
+### 3. Install the dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
 The desktop client requires:
 
+```text
 requests
 PySide6
 python-dotenv
 google-auth-oauthlib
-python-dotenv is the PyPI package name for the dotenv module, and google-auth-oauthlib provides the google_auth_oauthlib Python package.
+```
 
-A minimal requirements.txt can therefore contain:
+> `python-dotenv` provides the `dotenv` Python module, while `google-auth-oauthlib` provides `google_auth_oauthlib`.
 
-requests
-PySide6
-python-dotenv
-google-auth-oauthlib
-The Firebase Cloud Functions have their own dependencies in:
+## Configuration
 
-functions/requirements.txt
-Configuration
-The application expects local configuration for Firebase, Google OAuth, and the backend endpoints.
+Create a `.env` file in the project root:
 
-Create a .env file in the project root with the configuration required by config/settings.py.
-
-Example:
-
+```env
 FIREBASE_API_KEY=
 SAVE_PUBLICATION_URL=
 LIST_PUBLICATIONS_URL=
 DELETE_PUBLICATION_URL=
 CROSSREF_EMAIL=
+```
+
 Google OAuth credentials are expected at:
 
+```text
 credentials/google_oauth_client.json
-These files should not be committed to a public repository.
+```
 
-A recommended .gitignore entry is:
+The `.env` file and OAuth credential file should not be committed to the repository.
 
-.env
-credentials/
-.venv/
-venv/
-__pycache__/
-*.pyc
-data/publications/
-Running the Application
-Start the graphical application with:
+## Running the Application
 
+Linux / macOS:
+
+```bash
 python3 main_gui.py
-On Windows:
+```
 
+Windows:
+
+```powershell
 python main_gui.py
-The application opens the Google sign-in flow in the browser and returns to the desktop client after authentication.
+```
 
-Publication Data
-Internally, publications are represented as structured data rather than as plain citation strings.
+The application opens the Google sign-in flow in the user's browser and returns to the desktop client after authentication.
 
-A publication may contain information such as:
+## Data Model
 
+A publication is stored as structured data rather than only as a citation string.
+
+```json
 {
   "title": "Example Publication",
   "year": 2026,
   "authors": [],
   "journal": "Example Journal",
-  "volume": "1",
-  "issue": "2",
-  "pages": "1-10",
   "doi": "10.xxxx/example",
   "metadata_sources": ["crossref"],
   "annotations": [],
@@ -282,76 +270,88 @@ A publication may contain information such as:
     "tags": []
   }
 }
-A reference to the full paper can also be stored without uploading the file itself:
+```
 
+The application can also keep a reference to the full paper without uploading the file itself.
+
+Local file:
+
+```json
 {
   "full_text": {
     "type": "local",
     "location": "/home/user/papers/example.pdf"
   }
 }
-or:
+```
 
+Online location:
+
+```json
 {
   "full_text": {
     "type": "url",
     "location": "https://drive.google.com/..."
   }
 }
-External Services
-Crossref
-Used to retrieve structured bibliographic metadata, primarily through publication DOI information.
+```
 
-ORCID
-Used to identify researchers and enrich author records with persistent researcher identifiers.
+## External Services
 
-VIAF
-Used as an authority source for author identification and alternative name forms.
+| Service | Purpose |
+|---|---|
+| Crossref | Publication metadata |
+| ORCID | Researcher identifiers and author information |
+| VIAF | Author authority identifiers and alternative names |
+| Getty AAT | Controlled vocabulary for thematic annotations |
 
-Getty AAT
-Used as a controlled vocabulary for thematic publication annotations.
+## Firebase Backend
 
-Firebase Backend
-The backend is implemented with Firebase Cloud Functions.
+The application uses a small Firebase backend for authenticated storage.
 
-The general storage flow is:
-
+```text
 Desktop Client
       |
       | HTTPS + Firebase ID token
       v
-Cloud Function
+Firebase Cloud Function
       |
-      | Verify authenticated user
+      | Token verification
       v
 Cloud Firestore
-Publications are stored separately for each authenticated user.
+```
 
-The Firestore structure follows the general form:
+Publications are stored per authenticated user:
 
+```text
 users/
-  {uid}/
-    publications/
-      {publication_id}
-Tests
-Some project components include standalone tests.
+└── {uid}/
+    └── publications/
+        └── {publication_id}
+```
 
-Examples:
+## Tests
 
+Some components can be tested independently, for example:
+
+```bash
 python3 tests/test_crossref_mapper.py
-and:
+```
 
-python3 test_login.py
-The exact tests that can be run depend on whether they require network access or authentication credentials.
+Authentication and storage tests may require valid local credentials and network access.
 
-Current Scope
-The current version focuses on managing a personal publication library and enriching publication metadata.
+## Current Scope
 
-The application does not upload or store full PDF files. It only stores a reference to a local file or an online location.
+The current version focuses on a personal academic publication library and metadata enrichment.
 
-The project is intended as an academic prototype and as a basis for further work on bibliographic organization, controlled vocabularies, and publication management.
+Full PDF files are **not uploaded or stored by the application**. A publication may only contain a reference to a local file or an online location.
 
-Thesis Project
-This repository contains the implementation developed for a bachelor's thesis on the organization and annotation of academic publications.
+---
 
-The project explores how structured bibliographic metadata, authority identifiers, and controlled vocabularies can be combined in a practical desktop application while keeping the user involved in validating and selecting external metadata.
+<div align="center">
+
+### Bachelor's Thesis Project
+
+Built as an academic prototype for bibliographic organization, metadata enrichment and controlled-vocabulary annotation.
+
+</div>
